@@ -1,4 +1,4 @@
-﻿White wins. - with High Card Ace
-White wins. - with Flush Spades
-White wins. - with High Card King
+White wins. - with High Card Ace
+Black wins. - with Full House Four over Two
+Black wins. - with High Card King
 Tie
