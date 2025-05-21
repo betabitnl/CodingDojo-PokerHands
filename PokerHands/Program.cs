@@ -32,17 +32,18 @@ public class Program
 
                 var comparer = new HandComparer();
 
+
                 var result = comparer.Compare(blackHand, whiteHand);
 
                 switch (result)
                 {
-                    case -1:
+                    case 1:
                         Console.WriteLine($"Black wins. - with {blackHand}");
                         break;
                     case 0:
                         Console.WriteLine("Tie");
                         break;
-                    case 1:
+                    case -1:
                         Console.WriteLine($"White wins. - with {whiteHand}");
                         break;
                 }
