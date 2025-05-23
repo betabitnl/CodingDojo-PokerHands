@@ -39,12 +39,12 @@ public class Hand
     }
 
     private bool IsStraight =>
-         (Sorted.Last().Rank - Sorted.First().Rank == 4) ||
-         (Sorted[0].Rank == Rank.Two &&
-          Sorted[1].Rank == Rank.Three &&
-          Sorted[2].Rank == Rank.Four &&
-          Sorted[3].Rank == Rank.Five &&
-          Sorted[4].Rank == Rank.Ace);
+        (Sorted.Last().Rank - Sorted.First().Rank == 4) ||
+        (Sorted[0].Rank == Rank.Two &&
+         Sorted[1].Rank == Rank.Three &&
+         Sorted[2].Rank == Rank.Four &&
+         Sorted[3].Rank == Rank.Five &&
+         Sorted[4].Rank == Rank.Ace);
 
     public override string ToString()
     {
@@ -73,7 +73,7 @@ public class Hand
                 return $"Full House {groupByRank.First(x => x.Count() == 3).First().Rank} over {groupByRank.First(x => x.Count() == 2).First().Rank}";
             case HandType.FourOfAKind:
                 return $"Four Of A Kind {groupByRank.First(x => x.Count() == 4).First().Rank}";
-            case HandType.StraightFlush:
+            default: // HandType.StraightFlush:
                 return Sorted.First().Rank switch
                 {
                     Rank.Two when Sorted.Last().Rank == Rank.Ace =>
@@ -81,6 +81,5 @@ public class Hand
                     _ => $"Straight Flush {Cards.First().Color} {Sorted.Last().Rank} high"
                 };
         }
-        return string.Empty;
     }
 }

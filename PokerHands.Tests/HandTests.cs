@@ -29,6 +29,22 @@ public class HandTests
         result.HandType.Should().Be(expectedHandType);
     }
 
+    [Fact]
+    public void ToHand_InvalidHandString_ShouldThrowException()
+    {
+        // Arrange
+        var handString = "AS AS AS AS AS";
+        var result = handString.ToHand();
+
+        // Act
+        HandType GetHandType() => result.HandType;
+        Action act = () => GetHandType();
+
+        // Assert
+        act.Should().Throw<NotImplementedException>()
+            .WithMessage("Hand type not implemented yet.");
+
+    }
     [Theory]
     [InlineData("AS 5H 7D 9C TS", "High Card Ace")]
     [InlineData("AS AH 3D 4C 5S", "One Pair Ace")]

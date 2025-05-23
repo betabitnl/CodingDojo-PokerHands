@@ -1,4 +1,5 @@
-﻿namespace PokerHands;
+﻿
+namespace PokerHands;
 
 public class HandComparer : IComparer<Hand>
 {
@@ -6,13 +7,26 @@ public class HandComparer : IComparer<Hand>
     {
         if (x.HandType != y.HandType)
         {
-            return x.HandType.CompareTo(y.HandType);
+            return x.HandType > y.HandType ? 1 : -1;
         }
         
-        var xCards = x.Sorted;
-        var yCards = y.Sorted;
+        switch (x.HandType)
+        {
+            case HandType.ThreeOfAKind:
+            case HandType.FullHouse:
+            case HandType.FourOfAKind:
+                return CompareMiddleCard(x, y);
+            default:
+                return CompareHighCard(x, y);
+        }    
+    }
 
-        for (int i = 0; i < xCards.Count; i++)
+    private int CompareHighCard(Hand x, Hand y)
+    {
+        var xCards = x.Cards.OrderByDescending(c => c.Rank);
+        var yCards = y.Cards.OrderByDescending(c => c.Rank);
+
+        for (int i = 0; i < xCards.Count(); i++)
         {
             var card1 = xCards.ElementAt(i);
             var card2 = yCards.ElementAt(i);
@@ -24,5 +38,10 @@ public class HandComparer : IComparer<Hand>
         }
 
         return 0;
+    }
+
+    private int CompareMiddleCard(Hand x, Hand y)
+    {
+        return x.Sorted[2].Rank.CompareTo(y.Sorted[2].Rank);
     }
 }
