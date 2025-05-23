@@ -36,13 +36,13 @@ public class Program
 
                 switch (result)
                 {
-                    case -1:
+                    case 1:
                         Console.WriteLine($"Black wins. - with {blackHand}");
                         break;
                     case 0:
                         Console.WriteLine("Tie");
                         break;
-                    case 1:
+                    case -1:
                         Console.WriteLine($"White wins. - with {whiteHand}");
                         break;
                 }
